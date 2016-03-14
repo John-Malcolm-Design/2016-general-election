@@ -1,5 +1,5 @@
 # Irish Constituencies Neo4j Database
-###### Student name, G00123456
+###### John Malcolm Anderson, G00290919
 
 ## Introduction
 Give a summary here of what your project is about.
