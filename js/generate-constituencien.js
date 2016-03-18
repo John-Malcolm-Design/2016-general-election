@@ -35,7 +35,7 @@ function neoCreate(election){
     var statements = [];
 
     for(var i = 0; i < election.candidates.length; i++){
-        cypher(url, queryBuilder(election.candidates[i]) ,params,cb);
+        queryBuilder(election.candidates[i]);
     }
     
 };
@@ -47,15 +47,16 @@ function queryBuilder(candidate){
         query += ", website : '" +candidate.website_url+ "'"; 
     }
     
-    if(candidate.twitter_url !== null){
-        query += ", twitter_url : '" +candidate.twitter_url+ "'"; 
-        var queryTwitter = "CREATE (n:Twitter { url : '" +candidate.twitter_url+"'";
-        query += "}), "+queryTwitter;
-    }
-    
-    
     query += "})";
-    return query;
+    cypher(url, query ,params,cb);
+    
+    if(candidate.twitter_url !== null){
+        var queryTwitter = "CREATE (n:Twitter { url : '" +candidate.twitter_url+"'})";
+        cypher(url, queryTwitter ,params,cb);
+        
+        var relTwitter = "MATCH (candidate:Candidate { first_name : '" +candidate.first_name+ "', last_name : '" +candidate.last_name+ "'}), (twitter:Twitter{url : '" +candidate.twitter_url+"'}) MERGE (candidate)-[r:IS_ON]->(twitter)";
+        cypher(url, relTwitter ,params,cb);
+    }
+  
 }
-
 
