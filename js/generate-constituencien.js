@@ -47,15 +47,19 @@ function queryBuilder(candidate){
         query += ", website : '" +candidate.website_url+ "'"; 
     }
     
-    query += "})";
+    query += "}) RETURN n";
     cypher(url, query ,params,cb);
     
     if(candidate.twitter_url !== null){
-        var queryTwitter = "CREATE (n:Twitter { url : '" +candidate.twitter_url+"'})";
-        cypher(url, queryTwitter ,params,cb);
-        
-        var relTwitter = "MATCH (candidate:Candidate { first_name : '" +candidate.first_name+ "', last_name : '" +candidate.last_name+ "'}), (twitter:Twitter{url : '" +candidate.twitter_url+"'}) MERGE (candidate)-[r:IS_ON]->(twitter)";
-        cypher(url, relTwitter ,params,cb);
+        var queryTwitter = "CREATE (n:Twitter { url : '" +candidate.twitter_url+"'}) RETURN n";
+        var cbTwitter = function(err,data) { 
+            console.log(JSON.stringify(data)); 
+            var relTwitter = "MATCH (candidate:Candidate { first_name : '" +candidate.first_name+ "', last_name : '" +candidate.last_name+ "'}), (twitter:Twitter{url : '" +candidate.twitter_url+"'}) MERGE (candidate)-[r:IS_ON]->(twitter)";
+            cypher(url, relTwitter ,params,cb);
+        }
+
+        cypher(url, queryTwitter ,params,cbTwitter);
+               
     }
   
 }
