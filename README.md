@@ -9,8 +9,8 @@ This project is about representing the constituencies, parties, social media and
 
 Node.JS was used to call public API's and also scrap the web to build a high speed graph databse in Neo4J so that we can make interesting queries and get usefull insights into key trends and influencers in the 2016 election.
 
-### Database Information (alphabetically sorted)
-
+## Database 
+## Database Information
 ####Node labels 
 ![alt text][labels]
 [labels]: http://www.johnmalcolmdesign.com/labels.png "Labels"
@@ -18,7 +18,7 @@ Node.JS was used to call public API's and also scrap the web to build a high spe
 ####Relationship types
 - **FRIENDS:** Between TwitterLeaf(friend) and Twitter node for a specifiec candidate. 
 - **IS_ON:** Between candidate and social media account nodes for that specific candidate. 
-- **IS_RUNNING_IN: ** Between candidate and constituency.
+- **IS_RUNNING_IN:** Between candidate and constituency.
 
 ####Property keys
 - **Candidate:** id, first_name, last_name, gender, party_profile_url, phone, photo_url, website, constituency
@@ -27,7 +27,6 @@ Node.JS was used to call public API's and also scrap the web to build a high spe
 - **Twitter**: twitter_id, url
 - **Facebook:** url
 - **LinkedIn:** url
-
 
 ### Files
 - **election.grass:** Stylesheet for Neo4J
@@ -40,17 +39,15 @@ Node.JS was used to call public API's and also scrap the web to build a high spe
 - **js/twitcount.js**: Simple counter used by cron job for scraping the twitter API.
 - **js/data:**: Data results of twitter api scraper seperated into 17 sub folders. 
 
-### Issues
+### Building the database
+
+
+## Issues
 - **Twitter rate limit**
 - **Data Cleansing**
 - **Neo4J HTTP REST Api**
 - **Node.JS internal memory**
 
-### Building the database
-
-
-## Database
-Explain how you created your database, and how information is represented in it.
 
 ## Queries
 Summarise your three queries here.
