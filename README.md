@@ -1,6 +1,3 @@
-![alt text][logo]
-[logo]: http://www.irishtimes.com/polopoly_fs/1.2550281.1456513107!/image/image.png_gen/derivatives/box_300/image.png "Credit Irish Times"
-
 # Irish Election 2016 Neo4j Graph DB 
 ###### John Malcolm Anderson, G00290919
 
